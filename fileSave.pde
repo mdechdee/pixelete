@@ -7,7 +7,6 @@ void file_setup() {
 }
 
 void parseFile() {
-  // Open the file from the createWriter() example
   BufferedReader reader = createReader("file_num.txt");
   String line = null;
   try {

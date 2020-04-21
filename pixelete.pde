@@ -21,7 +21,6 @@ boolean isWalkable(pos last, int[] walk_dir){
     return false;
   if(colorDist(avgImg[last.y][last.x],avgImg[at.y][at.x])>color_threshold)
     return false;
-  //println(at.y,at.x,walk_dir[0],walk_dir[1]);
   for(int i=0;i<udlr.length;i++){
     if(walk_dir[0] == udlr[i][0]*-1 && walk_dir[1] == udlr[i][1]*-1)
       continue;
@@ -31,24 +30,15 @@ boolean isWalkable(pos last, int[] walk_dir){
     if(map[at.y+udlr[i][0]][at.x+udlr[i][1]] == true)
       return false;
   }
-  /*for(int i=0;i<8;i++){
-    if(walk_dir[0]!=walk_path[i][0]*-1 && walk_dir[1]!=walk_path[i][1]*-1){
-      if(at.y+walk_path[i][0] > pg.height/size || at.y+walk_path[i][0] < 0 ||
-        at.x+walk_path[i][1] > pg.width/size || at.x+walk_path[i][1] < 0 ||
-        map[at.y+walk_path[i][0]][at.x+walk_path[i][1]] == true )
-      {
-        return false;
-      }
-    }
-  }*/
   return true;
 }
 
 void setup(){
   frameRate(framerate);
-  //size(600,600);
-  size(620,875);
-  pg = createGraphics(2480,3500);
+  //size(620,875);
+  //pg = createGraphics(2480,3500);
+  size(875,620);
+  pg = createGraphics(3500,2480);
   pg.rectMode(CORNER);
   pg.noStroke();
   
@@ -62,7 +52,6 @@ void draw(){
   List<agent> toRemove = new ArrayList();
   if(picOn) image(grid, 0, 0, width, height);
   for(agent a : agents){
-    //a.display();
     a.update();
     if(a.hist.empty()){
       a.display();

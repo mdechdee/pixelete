@@ -4,20 +4,7 @@ int[][] walk_path = {{0, -1}, {0, 1}, {-1, 0}, {1, 0},
                     {1, -1}, {1, 1}, {-1, 1}, {-1, -1}};
 int [][] udlr = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 void agent_setup() {
-  /*for(int i = 0; i<num_agent;i++){
-   print(i);
-   agents[i] = new agent(color(random(0,255),random(0,255),random(0,255)), new pos(int(random(0,pg.height/size)),int(random(0,pg.width/size))));
-   }*/
   agents = new ArrayList<agent>();
-  //agents[0] = new agent(avgImg[0][pg.width/size-1], new pos(0, pg.width/size-1));
-  //agents[1] = new agent(avgImg[pg.height/size-1][(pg.width/size)/2], new pos(pg.height/size-1, (pg.width/size)/2));
-  //agents[2] = new agent(avgImg[0][pg.width/size-1], new pos(0, pg.width/size-1));
-  //agents[3] = new agent(avgImg[0][pg.width/size-1], new pos(0, pg.width/size-1));
-  /*agents[4] = new agent(color(#C70039), new pos((pg.height/3)/size, (pg.width/3)/size));
-   agents[5] = new agent(color(#FF5733), new pos((2*pg.height/3)/size, (pg.width/3)/size));
-   agents[6] = new agent(color(#C70039), new pos((pg.height/3)/size, (2*pg.width/3)/size));
-   agents[7] = new agent(color(#FF5733), new pos((2*pg.height/3)/size, (2*pg.width/3)/size));
-   agents[8] = new agent(color(#FFC300), new pos((pg.height/2)/size, (pg.width/2)/size));*/
 }
 
 class agent {
@@ -60,7 +47,6 @@ class agent {
       // Iterate through list of possible walk
       for (int j = 0; j<walk_path.length; j+=1) {
         int i = intList.get(j);
-        //println(last.y,last.x,walk_path[i][0],walk_path[i][1]);
         if (isWalkable(last, walk_path[i]))
         {
           xy = new pos(last.y+walk_path[i][0], last.x+walk_path[i][1]);
