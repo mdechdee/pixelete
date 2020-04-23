@@ -1,8 +1,5 @@
 ArrayList<agent> agents;
 
-int[][] walk_path = {{0, -1}, {0, 1}, {-1, 0}, {1, 0},
-                    {1, -1}, {1, 1}, {-1, 1}, {-1, -1}};
-int [][] udlr = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 void agent_setup() {
   agents = new ArrayList<agent>();
 }
@@ -63,34 +60,15 @@ class agent {
   }
   void display() {
     pg.beginDraw(); //<>//
+    pos bfr = paint.get(0);
     for (pos xy : paint) {
-      pg.noTint();
-      pg.noStroke();
-      pg.fill(colorAvg(avgImg[xy.y][xy.x], avgImg[xy.y][xy.x]));
-      float delta_size = 0;
-      if (!hist.empty()) 
-        delta_size =  hist.peek().dist * size_scale;
-      pg.rect(
-        xy.x*size + delta_size, 
-        xy.y*size + delta_size, 
-        size - delta_size, 
-        size - delta_size);
-       
+      switch(cur_shape){
+        case ELI: draw_ellispe(xy); break;
+        case REC: draw_rect(xy); break;
+        case LIN: draw_line(xy,bfr); bfr=xy; break;
+        default: break;
+      }
     }
     pg.endDraw();
-    /*float r = red(clr);
-     float g = green(clr);
-     float b = blue(clr);
-     int rand = int(random(-5,5));
-     clr = color(r+rand,g+rand,b+rand);
-     stroke(clr);
-     strokeWeight(6);
-     if(hist.empty()) return;
-     pos tmp = hist.pop();
-     if(hist.empty()) return;
-     pos bfr = hist.peek();
-     line(xy.x*size,xy.y*size,bfr.x*size,bfr.y*size);
-     hist.push(tmp);*/
-    
   }
 }

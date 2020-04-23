@@ -100,5 +100,4 @@ public float[] rgbToLab(int R, int G, int B) {
   lab[2] = 200*(yr-zr); 
 
   return lab;
-
 }

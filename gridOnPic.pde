@@ -16,7 +16,9 @@ void grid_setup(){
 void gridDraw()
 {
   grid.beginDraw();
-  grid.image(img, 0, 0, pg.width, pg.height);
+  grid.stroke(0);
+  grid.strokeWeight(1);
+  grid.image(tmp, 0, 0, pg.width, pg.height);
   //grid.stroke(#ffffff);
   for(int i=0 ;i<pg.width; i+= size)
     grid.line(i, 0, i,pg.height);
@@ -31,14 +33,16 @@ void calAvgImg(){
   tmp.beginDraw();
   tmp.image(img, 0, 0, pg.width, pg.height);
   tmp.loadPixels();
+  tmp.rectMode(CORNER);
   for(int i=0;i<pg.height;i+=size)
   {
     for(int m=0;m<pg.width;m+=size){
-      avgImg[int(i/size)][int(m/size)] = calAvg(i,m);;
+      avgImg[int(i/size)][int(m/size)] = calAvg(i,m);
+      tmp.fill(avgImg[int(i/size)][int(m/size)]);
+      tmp.rect(m,i,size,size);
     }
   }
   println("Done Avg!");
-  tmp.clear();
   tmp.endDraw();
 }
 

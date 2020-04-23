@@ -2,8 +2,8 @@ PrintWriter output;
 int file_num;
 
 void file_setup() {
-  output = createWriter("file_num.txt"); 
   parseFile();
+  output = createWriter("file_num.txt"); 
 }
 
 void parseFile() {
