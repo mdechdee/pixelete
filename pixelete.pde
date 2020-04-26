@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 PGraphics pg;
 PGraphics prev;
+PImage img;
 
 int[][] walk_path = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 int[][] udlr = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+//float[][] grad;
+//color[][] avg;
 
 int size = 10;
 int framerate = 2;
@@ -22,7 +25,7 @@ boolean isWalkable(pos last, int[] walk_dir){
     return false;
   if(map[at.y][at.x] == true)
     return false;
-  if(colorDist(avgImg[last.y][last.x],avgImg[at.y][at.x])>color_threshold)
+  if(colorDist(avg[last.y][last.x],avg[at.y][at.x])>color_threshold)
     return false;
   for(int i=0;i<udlr.length;i++){
     if(walk_dir[0] == udlr[i][0]*-1 && walk_dir[1] == udlr[i][1]*-1)
@@ -46,7 +49,9 @@ void setup(){
   pg.rectMode(CORNER);
   pg.noStroke();
   
-  grid_setup();
+  img = loadImage("kaist.jpg");
+  avg_setup();
+  gradient_setup();
   file_setup();
   agent_setup();
 }
@@ -54,7 +59,7 @@ void setup(){
 void draw(){
   background(0);
   List<agent> toRemove = new ArrayList();
-  if(picOn) image(grid, 0, 0, width, height);
+  if(picOn) image(gradImg, 0, 0, width, height);
   for(agent a : agents){
     a.update();
     if(a.hist.empty()){
@@ -70,7 +75,7 @@ void mouseClicked(){
 
   agent a = new agent
   (
-    avgImg[mouseY*(pg.height/height)/size][mouseX*(pg.width/width)/size], 
+    avg[mouseY*(pg.height/height)/size][mouseX*(pg.width/width)/size], 
     new pos(mouseY*(pg.height/height)/size, mouseX*(pg.width/width)/size),
     agent_count
   );
@@ -101,7 +106,7 @@ void keyPressed(){
   if( key == 'r' || key == 'R'){
     size = color_threshold;
     map = new boolean[(pg.height/size)+1][(pg.width/size)+1];
-    grid_setup();
+    avg_setup();
   }
   if( key == 'x' || key == 'X'){
     switch(cur_shape){

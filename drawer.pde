@@ -1,11 +1,11 @@
 void fill_setup(pos xy){
   pg.noTint();
   pg.noStroke();
-  pg.fill(colorAvg(avgImg[xy.y][xy.x], avgImg[xy.y][xy.x]));  
+  pg.fill(colorAvg(avg[xy.y][xy.x], avg[xy.y][xy.x]));  
 }
 
 void stroke_setup(pos xy){
-  pg.stroke(colorAvg(avgImg[xy.y][xy.x], avgImg[xy.y][xy.x]));
+  pg.stroke(colorAvg(avg[xy.y][xy.x], avg[xy.y][xy.x]));
   pg.strokeWeight(6);
 }
 
