@@ -91,7 +91,7 @@ void keyPressed(){
   if(key == 's' || key == 'S'){
     file_num += 1;
     output.print(file_num);
-    pg.save("sketch"+file_num+".tiff");
+    gradImg.save("sketch"+file_num+".tiff");
     output.close();
   }
   if( key == 'c' || key == 'C'){
