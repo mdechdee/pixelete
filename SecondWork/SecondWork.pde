@@ -1,12 +1,8 @@
-import java.util.Stack;
-import java.util.Collections;
-import java.util.Arrays;
-import java.util.List;
 PGraphics pg;
 PShape rec;
-static int FRAMERATE = 2;
+static int FRAMERATE = 60;
 int W,H;
-int PAD = 70;
+int PAD = 400;
 
 void setup(){
   frameRate(FRAMERATE);
@@ -16,10 +12,17 @@ void setup(){
   pg = createGraphics(3500,2480);
   W = pg.width;
   H = pg.height;
+  
+  pg.ellipseMode(CENTER);
   pg.rectMode(CORNER);
-  pg.fill(#ffffff);
+  pg.noFill();
+  pg.stroke(0);
+  
+  pg.smooth();
   rec = pg.createShape();
+  
   rec.beginShape();
+  rec.strokeWeight(4);
   rec.vertex(PAD,PAD);
   rec.vertex(W-PAD, PAD);
   rec.vertex(W-PAD, H-PAD);
@@ -29,9 +32,27 @@ void setup(){
   pg.shape(rec);
   pg.endDraw();
   
+  section(2, rec);
+  image(pg,0,0,width, height);
 }
 
 void draw(){
-  background(0);
+  
+  
+  
+  
+}
+
+void mousePressed() {
+  
+  pg.beginDraw();
+  
+  rec.translate(W/2, H/2);  
+  rec.rotate(0.1);
+  rec.translate(-W/2, -H/2);  
+  rec.resetMatrix();
+  pg.shape(rec);
+  pg.endDraw();
+  section(2, rec);
   image(pg,0,0,width, height);
 }
