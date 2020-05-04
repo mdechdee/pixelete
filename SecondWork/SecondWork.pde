@@ -17,8 +17,9 @@ void setup(){
   pg.rectMode(CORNER);
   pg.noFill();
   pg.stroke(0);
-  
   pg.smooth();
+  smooth();
+
   rec = pg.createShape();
   
   rec.beginShape();
@@ -32,27 +33,24 @@ void setup(){
   pg.shape(rec);
   pg.endDraw();
   
-  section(2, rec);
-  image(pg,0,0,width, height);
+  section(3, rec);
+  //image(pg,0,0,width, height);
 }
 
 void draw(){
-  
-  
-  
-  
+  image(pg,0,0,width,height);
 }
 
 void mousePressed() {
   
-  pg.beginDraw();
+  //pg.beginDraw();
   
-  rec.translate(W/2, H/2);  
-  rec.rotate(0.1);
-  rec.translate(-W/2, -H/2);  
-  rec.resetMatrix();
-  pg.shape(rec);
-  pg.endDraw();
-  section(2, rec);
-  image(pg,0,0,width, height);
+  //rec.translate(W/2, H/2);  
+  //rec.rotate(0.1);
+  //rec.translate(-W/2, -H/2);  
+  //rec.resetMatrix();
+  //pg.shape(rec);
+  //pg.endDraw();
+  //section(3, rec);
+  //image(pg,0,0,width, height);
 }
