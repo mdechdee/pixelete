@@ -29,9 +29,7 @@ void setup(){
   rec.vertex(W-PAD, H-PAD);
   rec.vertex(PAD, H-PAD);
   rec.endShape(CLOSE);
-  pg.beginDraw();
-  pg.shape(rec);
-  pg.endDraw();
+
   
   section(3, rec);
   //image(pg,0,0,width, height);
