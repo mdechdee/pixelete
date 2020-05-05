@@ -3,6 +3,7 @@ PShape rec;
 static int FRAMERATE = 60;
 int W,H;
 int PAD = 400;
+int imageCount;
 
 void setup(){
   frameRate(FRAMERATE);
@@ -41,15 +42,12 @@ void draw(){
 }
 
 void mousePressed() {
-  
-  //pg.beginDraw();
-  
-  //rec.translate(W/2, H/2);  
-  //rec.rotate(0.1);
-  //rec.translate(-W/2, -H/2);  
-  //rec.resetMatrix();
-  //pg.shape(rec);
-  //pg.endDraw();
-  //section(3, rec);
-  //image(pg,0,0,width, height);
+  String path = dataPath("Images/");
+  File file = new File(path);
+  int sizeOfFolder = 0;
+  if(file.exists() && file.isDirectory()) {
+    sizeOfFolder = file.listFiles().length;
+  }
+  pg.save("Images/sketch"+(imageCount+sizeOfFolder)+".tiff");
+  imageCount++;
 }
