@@ -2,22 +2,15 @@ void section(int depth,PShape rec){
   if(depth<0)  return;
   PVector[] v = {rec.getVertex(0), rec.getVertex(1),
                   rec.getVertex(2),rec.getVertex(3)};
-  PVector[] p = new PVector[4];
-  for(int i =0;i<4;i++){
-    float a = random(0.4,0.6);
-    p[i] = PVector.lerp(v[i],v[(i+1)%4],a);
-  }
-  PVector center = intersect(p[0], p[1], p[2], p[3]);
+  PVector[] p = new PVector[2];
+  p[0] = PVector.lerp(v[0],v[1],random(0.3,0.7));
+  p[1] = PVector.lerp(v[2],v[3],random(0.3,0.7));
   
-  PShape UL = drawRect(depth,v[0], p[0], center, p[3], PVector.lerp(PVector.sub(v[0], center), new PVector(0,0), random(0.2,1)));
-  PShape UR = drawRect(depth,p[0], v[1], p[1], center, PVector.lerp(PVector.sub(v[1], center), new PVector(0,0), random(0.2,1)));
-  PShape DR = drawRect(depth,center, p[1], v[2], p[2], PVector.lerp(PVector.sub(v[2], center), new PVector(0,0), random(0.2,1)));
-  PShape DL = drawRect(depth,p[3], center, p[2], v[3], PVector.lerp(PVector.sub(v[3], center), new PVector(0,0), random(0.2,1)));
+  PShape L = drawRect(depth,v[0], p[0], p[1], v[3], new PVector(-20,0).rotate(random(-PI/2, PI/2)));
+  PShape R = drawRect(depth,p[0], v[1], v[2], p[1], new PVector(20,0).rotate(random(-PI/2, PI/2)));
 
-  section(depth-1, UL);
-  section(depth-1, UR);
-  section(depth-1, DR);
-  section(depth-1, DL);
+  section(depth-1, L);
+  section(depth-1, R);
 }
 
 
@@ -25,7 +18,7 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   PShape newRec = pg.createShape();
   newRec.beginShape();
   newRec.fill(#ffffff, 50);
-  newRec.strokeWeight(4);
+  newRec.noStroke();
   newRec.vertex(p1.x,p1.y);
   newRec.vertex(p2.x,p2.y);
   newRec.vertex(p3.x,p3.y);

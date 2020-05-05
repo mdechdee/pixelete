@@ -1,8 +1,10 @@
 PGraphics pg;
 PShape rec;
-static int FRAMERATE = 60;
+static int FRAMERATE = 5;
 int W,H;
-int PAD = 400;
+int t;
+float cur_x, cur_y;
+int PAD = 1200;
 
 void setup(){
   frameRate(FRAMERATE);
@@ -12,6 +14,9 @@ void setup(){
   pg = createGraphics(3500,2480);
   W = pg.width;
   H = pg.height;
+  t = 0;
+  cur_x = 0;
+  cur_y = 0;
   
   pg.ellipseMode(CENTER);
   pg.rectMode(CORNER);
@@ -24,19 +29,28 @@ void setup(){
   
   rec.beginShape();
   rec.strokeWeight(4);
-  rec.vertex(PAD,PAD);
-  rec.vertex(W-PAD, PAD);
-  rec.vertex(W-PAD, H-PAD);
-  rec.vertex(PAD, H-PAD);
+  rec.vertex(PAD*1.5,PAD);
+  rec.vertex(W-PAD*1.5, PAD);
+  rec.vertex(W-PAD*1.5, H-PAD);
+  rec.vertex(PAD*1.5, H-PAD);
   rec.endShape(CLOSE);
 
   
-  section(3, rec);
+  section(6, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
-  image(pg,0,0,width,height);
+  resetMatrix();
+  float noise_angle = noise(cur_x,cur_y)*TWO_PI;
+  stroke(255);
+  strokeWeight(2);
+  line(cur_x+width/2,cur_y+height/2,width/2 ,height/2);
+  //pg.rotate(noise_angle);
+  cur_x += cos(noise_angle)*5;
+  cur_y += sin(noise_angle)*5;
+  image(pg,cur_x,cur_y,width,height);
+  
 }
 
 void mousePressed() {
