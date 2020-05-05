@@ -1,5 +1,7 @@
+ArrayList<PShape> sect_list = new ArrayList<PShape>();
+ArrayList<PShape> to_add = new ArrayList<PShape>();
 float SEP = 0.2;   // Seperation of rects (0-1) the less the more seperation
-float EXTREME = 0.1; // The extremness of rectngle generated (0-0.5)
+float EXTREME = 0.05; // The extremness of rectngle generated (0-0.5)
 
 void section(int depth,PShape rec){
   if(depth<0)  return;
@@ -16,11 +18,17 @@ void section(int depth,PShape rec){
   PShape UR = drawRect(depth,p[0], v[1], p[1], center, PVector.lerp(PVector.sub(v[1], center), new PVector(0,0), random(SEP,1)));
   PShape DR = drawRect(depth,center, p[1], v[2], p[2], PVector.lerp(PVector.sub(v[2], center), new PVector(0,0), random(SEP,1)));
   PShape DL = drawRect(depth,p[3], center, p[2], v[3], PVector.lerp(PVector.sub(v[3], center), new PVector(0,0), random(SEP,1)));
-
-  section(depth-1, UL);
-  section(depth-1, UR);
-  section(depth-1, DR);
-  section(depth-1, DL);
+  
+  to_add.add(UL);  
+  to_add.add(UR);  
+  to_add.add(DL);  
+  to_add.add(DR);  
+  
+  //section(depth-1, UL);
+  //section(depth-1, UR);
+  //section(depth-1, DR);
+  //section(depth-1, DL);
+  
 }
 
 
@@ -40,10 +48,11 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   newRec.endShape(CLOSE);
   newRec.translate(offset.x,offset.y);
   
-  if(d==0){ 
+  if(ite==1){
     pg.beginDraw();
     pg.shape(newRec);
     pg.endDraw();
   }
+  
   return newRec;
 }

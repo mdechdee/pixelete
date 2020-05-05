@@ -1,6 +1,10 @@
+import java.util.List;
+
 PGraphics pg;
 PShape rec;
-static int FRAMERATE = 60;
+int ite = 4;
+
+static int FRAMERATE = 2;
 int W,H;
 int PAD = 400;
 
@@ -19,9 +23,8 @@ void setup(){
   pg.stroke(0);
   pg.smooth();
   smooth();
-
-  rec = pg.createShape();
   
+  rec = pg.createShape();
   rec.beginShape();
   rec.strokeWeight(4);
   rec.vertex(PAD,PAD);
@@ -30,14 +33,25 @@ void setup(){
   rec.vertex(PAD, H-PAD);
   rec.endShape(CLOSE);
 
-  
+  sect_list.add(rec);
   section(4, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
   background(255);
+  if(ite>0){   
+    for(PShape r : sect_list){
+      section(ite, r);
+    }
+    sect_list = new ArrayList<PShape>();
+    for(PShape r : to_add){
+      sect_list.add(r);
+    }
+    to_add = new ArrayList<PShape>();
+  }
   image(pg,0,0,width,height);
+  ite--;
 }
 
 void mousePressed() {
