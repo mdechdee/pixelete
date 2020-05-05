@@ -31,11 +31,12 @@ void setup(){
   rec.endShape(CLOSE);
 
   
-  section(3, rec);
+  section(4, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
+  background(255);
   image(pg,0,0,width,height);
 }
 
