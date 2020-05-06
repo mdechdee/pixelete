@@ -41,9 +41,10 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   newRec.translate(offset.x,offset.y);
   
   if(d==0){ 
-    pg.beginDraw();
-    pg.shape(newRec);
-    pg.endDraw();
+    //pg.beginDraw();
+    //pg.shape(newRec);
+    //pg.endDraw();
+    secList.add(new secPar(newRec));
   }
   return newRec;
 }

@@ -18,10 +18,9 @@ void setup(){
   pg.rectMode(CORNER);
   pg.noFill();
   pg.stroke(0);
-  pg.smooth();
+  pg.smooth(4);
+  //pg.translate(W/2,H/2);
   smooth();
-
-  rec = pg.createShape();
   
   rec.beginShape();
   rec.strokeWeight(4);
@@ -29,16 +28,18 @@ void setup(){
   rec.vertex(W-PAD, PAD);
   rec.vertex(W-PAD, H-PAD);
   rec.vertex(PAD, H-PAD);
-  rec.endShape(CLOSE);
-
-  
+  rec.endShape(CLOSE); 
   section(4, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
-  background(255);
-  image(pg,0,0,width,height);
+  pg.background(255);
+  for(secPar p : secList){
+    p.update();
+    p.draw();
+  }
+  image(pg,W/2,H/2,width,height);
 }
 
 void mousePressed() {
