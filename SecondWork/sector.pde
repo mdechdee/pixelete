@@ -1,4 +1,4 @@
-float SEP = 0.2;   // Seperation of rects (0-1) the less the more seperation
+float SEP = 0.7;   // Seperation of rects (0-1) the less the more seperation
 float EXTREME = 0.2; // The extremness of rectngle generated (0-0.5)
 
 void section(int depth,PShape rec){

@@ -4,7 +4,7 @@ int W,H;
 int PAD_W = 350;
 int PAD_H = 250;
 int MARG = 100;
-int imageCount = 1;
+int imageCount;
 
 void setup(){
   frameRate(FRAMERATE);
@@ -30,10 +30,13 @@ void setup(){
   //secList.add(new secPar(rec));
   section(5, rec);
   //image(pg,0,0,width, height);
+  String path = sketchPath("Images/");
+  File file = new File(path);
+  imageCount = file.list().length+3;
 }
 
 void draw(){
-  fill(255, 1);
+  fill(255);
   rect(0,0,W,H);
   for(secPar p : secList){
     p.update();
@@ -43,9 +46,6 @@ void draw(){
 }
 
 void mousePressed() {
-  String path = sketchPath("Images/");
-  File file = new File(path);
-  int sizeOfFolder = file.list().length+1;
-  save("Images/sketch"+(imageCount+sizeOfFolder)+".tiff");
+  save("Images/sketch"+(imageCount)+".tiff");
   imageCount++;
 }
