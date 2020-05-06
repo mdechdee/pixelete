@@ -1,8 +1,7 @@
-PGraphics pg;
 PShape rec;
 static int FRAMERATE = 60;
 int W,H;
-int PAD = 400;
+int PAD = 20;
 int imageCount;
 
 void setup(){
@@ -10,18 +9,16 @@ void setup(){
   //size(620,875);
   //pg = createGraphics(2480,3500);
   size(875,620);
-  pg = createGraphics(3500,2480);
-  W = pg.width;
-  H = pg.height;
+  W = width;
+  H = height;
   
-  pg.ellipseMode(CENTER);
-  pg.rectMode(CORNER);
-  pg.noFill();
-  pg.stroke(0);
-  pg.smooth(4);
+  noFill();
+  stroke(0);
+  smooth(4);
   //pg.translate(W/2,H/2);
   smooth();
   
+  rec = createShape();
   rec.beginShape();
   rec.strokeWeight(4);
   rec.vertex(PAD,PAD);
@@ -29,17 +26,17 @@ void setup(){
   rec.vertex(W-PAD, H-PAD);
   rec.vertex(PAD, H-PAD);
   rec.endShape(CLOSE); 
-  section(4, rec);
+  section(2, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
-  pg.background(255);
+  background(255);
   for(secPar p : secList){
     p.update();
     p.draw();
   }
-  image(pg,W/2,H/2,width,height);
+  //image(pg,0,0,width,height);
 }
 
 void mousePressed() {

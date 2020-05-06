@@ -25,7 +25,7 @@ void section(int depth,PShape rec){
 
 
 PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector offset){
-  PShape newRec = pg.createShape();
+  PShape newRec = createShape();
   newRec.beginShape();
   newRec.colorMode(HSB,100,100,100,100);
   newRec.fill(noise(offset.x,offset.y)*10+50,

@@ -29,11 +29,11 @@ class secPar{
     //   torq.add(findTorq(sect.getVertex(i), pos)); 
     //}
     //wrap();
+    sect.resetMatrix();
+    sect.translate(pos.x,pos.y);
   }
   void draw(){
-    pg.beginDraw();
-    pg.shape(sect);
-    pg.endDraw();
+    shape(sect);
   }
   void wrap(){
     int count = 0;
