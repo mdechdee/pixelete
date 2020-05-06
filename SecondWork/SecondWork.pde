@@ -3,7 +3,8 @@ static int FRAMERATE = 60;
 int W,H;
 int PAD_W = 350;
 int PAD_H = 250;
-int imageCount;
+int MARG = 100;
+int imageCount = 1;
 
 void setup(){
   frameRate(FRAMERATE);
@@ -44,7 +45,7 @@ void draw(){
 void mousePressed() {
   String path = sketchPath("Images/");
   File file = new File(path);
-  int sizeOfFolder = file.list().length;
+  int sizeOfFolder = file.list().length+1;
   save("Images/sketch"+(imageCount+sizeOfFolder)+".tiff");
   imageCount++;
 }
