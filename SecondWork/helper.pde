@@ -21,7 +21,7 @@ PVector intersect(PVector a, PVector b, PVector c, PVector d){
 
 PVector findForce(PVector at){
   float theta = noise(at.x,at.y)*TWO_PI;
-  float v_x = cos(theta*2)*FORCE_MUL;
-  float v_y = sin(theta*2)*FORCE_MUL;
+  float v_x = cos(theta)*FORCE_MUL;
+  float v_y = sin(theta)*FORCE_MUL;
   return new PVector(v_x,v_y);
 }

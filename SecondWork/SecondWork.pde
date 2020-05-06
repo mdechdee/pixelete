@@ -1,37 +1,39 @@
 PShape rec;
 static int FRAMERATE = 60;
 int W,H;
-int PAD = 20;
+int PAD_W = 350;
+int PAD_H = 250;
 int imageCount;
 
 void setup(){
   frameRate(FRAMERATE);
   //size(620,875);
   //pg = createGraphics(2480,3500);
-  size(875,620);
+  size(2480,3500);
   W = width;
   H = height;
   
+  background(255);
   noFill();
-  stroke(0);
-  smooth(4);
-  //pg.translate(W/2,H/2);
-  smooth();
+  noStroke();
+  smooth(2);
   
   rec = createShape();
   rec.beginShape();
-  rec.strokeWeight(4);
-  rec.vertex(PAD,PAD);
-  rec.vertex(W-PAD, PAD);
-  rec.vertex(W-PAD, H-PAD);
-  rec.vertex(PAD, H-PAD);
+  rec.fill(0);
+  rec.vertex(PAD_W,PAD_H);
+  rec.vertex(W-PAD_W, PAD_H);
+  rec.vertex(W-PAD_W, H-PAD_H);
+  rec.vertex(PAD_W, H-PAD_H);
   rec.endShape(CLOSE); 
-  section(2, rec);
+  //secList.add(new secPar(rec));
+  section(5, rec);
   //image(pg,0,0,width, height);
 }
 
 void draw(){
-  background(255);
+  fill(255, 1);
+  rect(0,0,W,H);
   for(secPar p : secList){
     p.update();
     p.draw();
@@ -40,12 +42,9 @@ void draw(){
 }
 
 void mousePressed() {
-  String path = dataPath("Images/");
+  String path = sketchPath("Images/");
   File file = new File(path);
-  int sizeOfFolder = 0;
-  if(file.exists() && file.isDirectory()) {
-    sizeOfFolder = file.listFiles().length;
-  }
-  pg.save("Images/sketch"+(imageCount+sizeOfFolder)+".tiff");
+  int sizeOfFolder = file.list().length;
+  save("Images/sketch"+(imageCount+sizeOfFolder)+".tiff");
   imageCount++;
 }

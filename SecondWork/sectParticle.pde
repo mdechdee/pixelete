@@ -1,6 +1,6 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
-float MAX_FORCE = 2; 
-float MAX_VEL = 10;
+float MAX_FORCE = 5; 
+float MAX_VEL = 1;
 float MASS = 1;
 float FORCE_MUL = 1;
 
@@ -28,20 +28,23 @@ class secPar{
     //for(int i=0;i<4;i++){
     //   torq.add(findTorq(sect.getVertex(i), pos)); 
     //}
-    //wrap();
+    wrap();
     sect.resetMatrix();
+    sect.translate(-W/2,-H/2);
     sect.translate(pos.x,pos.y);
   }
   void draw(){
     shape(sect);
   }
   void wrap(){
-    int count = 0;
-    for(int i=0;i<4;i++){ 
-      PVector v = sect.getVertex(i);
-      if(v.x>W || v.x<0 || v.y>H || v.y<0)
-        count++;
-    }
+     float new_x, new_y;
+     if(pos.x > W)  new_x = pos.x-W;
+     else if(pos.x <0) new_x = pos.x+W;
+     else new_x = pos.x;
+     if(pos.y > H)  new_y = pos.y-H;
+     else if(pos.y <0) new_y = pos.y+H;
+     else new_y = pos.y;
+     pos = new PVector(new_x,new_y);
   }
 }
 
