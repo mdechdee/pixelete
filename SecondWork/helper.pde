@@ -23,5 +23,6 @@ PVector findForce(PVector at){
   float theta = noise(at.x,at.y)*TWO_PI;
   float v_x = cos(theta*2)*FORCE_MUL;
   float v_y = sin(theta)*FORCE_MUL;
-  return new PVector(v_x,v_y);
+  float v_z = cos(theta)*FORCE_MUL;
+  return new PVector(v_x,v_y,v_z);
 }

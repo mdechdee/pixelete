@@ -28,10 +28,10 @@ class secPar{
     //for(int i=0;i<4;i++){
     //   torq.add(findTorq(sect.getVertex(i), pos)); 
     //}
-    wrap();
+    //wrap();
     sect.resetMatrix();
-    sect.translate(-W/2,-H/2);
-    sect.translate(pos.x,pos.y);
+    sect.translate(-W/2,-H/2,0);
+    sect.translate(pos.x,pos.y,pos.z);
   }
   void draw(){
     shape(sect);
