@@ -1,12 +1,13 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
 float MAX_FORCE = 1; 
-float MAX_VEL = 2;
+float MAX_VEL = 0;
 float MASS = 1;
 float FORCE_MUL = 1;
 
 class secPar{
   PShape sect;
   PVector pos;
+  PVector ini_pos;
   PVector vel = new PVector(0,0);
   PVector force= new PVector(0,0);
   PVector torq = new PVector(0,0);
@@ -15,6 +16,7 @@ class secPar{
   secPar(PShape _sect){
     sect = _sect;
     pos = findCenter(sect);
+    ini_pos = pos;
     for(int i=0;i<4;i++) 
       inertia += MASS*sect.getVertex(i).dist(pos)*sect.getVertex(i).dist(pos);
   }
@@ -28,13 +30,17 @@ class secPar{
     //for(int i=0;i<4;i++){
     //   torq.add(findTorq(sect.getVertex(i), pos)); 
     //}
-    wrap();
+    //wrap();
     sect.resetMatrix();
-    sect.translate(-W/2,-H/2);
+    //sect.translate(PAD_W/4,PAD_H/4);
     sect.translate(pos.x,pos.y);
+    //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);
+    //sect.translate(-PAD_W,-PAD_H);
+    
   }
   void draw(){
     shape(sect);
+    //ellipse(pos.x,pos.y,5,5);
   }
   void wrap(){
      float new_x, new_y;

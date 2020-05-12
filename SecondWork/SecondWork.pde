@@ -1,16 +1,18 @@
 PShape rec;
 static int FRAMERATE = 60;
 int W,H;
-int PAD_W = 350;
-int PAD_H = 250;
-int MARG = 100;
+int PAD_W = 2820;
+int PAD_H = 2000;
+int MARG = 0;
+int STEPS = 10;
 int imageCount;
 
 void setup(){
   frameRate(FRAMERATE);
   //size(620,875);
   //pg = createGraphics(2480,3500);
-  size(2480,3500);
+  //size(3500,2480);
+  size(3500,2480);
   W = width;
   H = height;
   
@@ -18,17 +20,18 @@ void setup(){
   noFill();
   noStroke();
   smooth(2);
+  //rectMode(CORNER);
   
   rec = createShape();
   rec.beginShape();
   rec.fill(0);
-  rec.vertex(PAD_W,PAD_H);
-  rec.vertex(W-PAD_W, PAD_H);
-  rec.vertex(W-PAD_W, H-PAD_H);
-  rec.vertex(PAD_W, H-PAD_H);
+  rec.vertex(0,0);
+  rec.vertex(PAD_W, 0);
+  rec.vertex(PAD_W, PAD_H);
+  rec.vertex(0, PAD_H);
   rec.endShape(CLOSE); 
   //secList.add(new secPar(rec));
-  section(5, rec);
+  section(STEPS, rec);
   //image(pg,0,0,width, height);
   String path = sketchPath("Images/");
   File file = new File(path);
