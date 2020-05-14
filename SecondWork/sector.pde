@@ -40,10 +40,11 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   PShape newRec = createShape();
   newRec.beginShape();
   newRec.colorMode(HSB,100,100,100,100);
-  newRec.fill(noise(offset.x,offset.y)*80+10,
+  /*newRec.fill(noise(offset.x,offset.y)*80+10,
               noise(offset.x*5,offset.y*5)*30+70,
               noise(offset.x*0.05,offset.y*0.05)*20+80
-              ,100);
+              ,100);*/
+  newRec.fill(colors.get((int) random(0,12)).toInt());
   newRec.noStroke();
   //newRec.vertex(p1.x+offset.x,p1.y+offset.y);
   //newRec.vertex(p2.x+offset.x,p2.y+offset.y);

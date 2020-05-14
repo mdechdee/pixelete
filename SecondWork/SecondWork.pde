@@ -1,3 +1,7 @@
+import jto.colorscheme.*;
+ColorScheme cs;
+
+ArrayList<Color> colors;
 PShape rec;
 static int FRAMERATE = 60;
 int W,H;
@@ -36,6 +40,11 @@ void setup(){
   String path = sketchPath("Images/");
   File file = new File(path);
   imageCount = file.list().length+3;
+  
+  cs = new ColorScheme("Color.xml", this);
+  colors = cs.getColors();
+  
+  for(color c : colors)
 }
 
 void draw(){
