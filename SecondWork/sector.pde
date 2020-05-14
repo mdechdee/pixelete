@@ -11,24 +11,24 @@ void section(int depth,PShape rec){
     p[i] = PVector.lerp(v[i],v[(i+1)%4],a);
   }
   PVector center = intersect(p[0], p[1], p[2], p[3]);
-  if(random(0,depth) > 0.1){
+  if(random(0,depth) > 0.6){
     PShape UL = drawRect(depth,v[0], p[0], center, p[3], PVector.lerp(PVector.sub(v[0], center), new PVector(0,0), random(SEP,1)), false);
     section(depth-1, UL);
   }
   else 
   drawRect(depth,v[0], p[0], center, p[3], PVector.lerp(PVector.sub(v[0], center), new PVector(0,0), random(SEP,1)), true);
-  if(random(0,depth) > 0.1)
+  if(random(0,depth) > 0.6)
   {
     PShape UR = drawRect(depth,p[0], v[1], p[1], center, PVector.lerp(PVector.sub(v[1], center), new PVector(0,0), random(SEP,1)), false);
     section(depth-1, UR);
   }
   else drawRect(depth,p[0], v[1], p[1], center, PVector.lerp(PVector.sub(v[1], center), new PVector(0,0), random(SEP,1)), true);
-  if(random(0,depth) > 0.1){
+  if(random(0,depth) > 0.6){
     PShape DR = drawRect(depth,center, p[1], v[2], p[2], PVector.lerp(PVector.sub(v[2], center), new PVector(0,0), random(SEP,1)), false);
     section(depth-1, DR);
   }
   else drawRect(depth,center, p[1], v[2], p[2], PVector.lerp(PVector.sub(v[2], center), new PVector(0,0), random(SEP,1)), true);
-  if(random(0,depth) > 0.1){
+  if(random(0,depth) > 0.6){
     PShape DL = drawRect(depth,p[3], center, p[2], v[3], PVector.lerp(PVector.sub(v[3], center), new PVector(0,0), random(SEP,1)), false);
     section(depth-1, DL);
   }

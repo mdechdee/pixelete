@@ -4,7 +4,7 @@ int W,H;
 int PAD_W = 2820;
 int PAD_H = 2000;
 int MARG = 0;
-int STEPS = 10;
+int STEPS = 6;
 int imageCount;
 
 void setup(){
