@@ -1,5 +1,7 @@
 float SEP = 0.7;   // Seperation of rects (0-1) the less the more seperation
-float EXTREME = 0.2; // The extremness of rectngle generated (0-0.5)
+float EXTREME = 0.15; // The extremness of rectngle generated (0-0.5)
+ColorScheme cs;
+ArrayList<Color> colors;
 
 void section(int depth,PShape rec){
   if(depth<0)  return;
@@ -40,12 +42,17 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   PShape newRec = createShape();
   newRec.beginShape();
   newRec.colorMode(HSB,100,100,100,100);
-  /*newRec.fill(noise(offset.x,offset.y)*80+10,
+  newRec.fill(noise(offset.x,offset.y)*80+10,
               noise(offset.x*5,offset.y*5)*30+70,
               noise(offset.x*0.05,offset.y*0.05)*20+80
-              ,100);*/
-  newRec.fill(colors.get((int) random(0,12)).toInt());
-  newRec.noStroke();
+              ,100);
+  newRec.stroke(noise(offset.x,offset.y)*80+10,
+              noise(offset.x*5,offset.y*5)*30+70,
+              noise(offset.x*0.05,offset.y*0.05)*50+80
+              ,100);
+  //newRec.fill(colors.get((int) random(0,15)).toInt());
+  //newRec.stroke(colors.get((int) random(0,15)).toInt());
+  newRec.strokeWeight(pow(2.4,d));
   //newRec.vertex(p1.x+offset.x,p1.y+offset.y);
   //newRec.vertex(p2.x+offset.x,p2.y+offset.y);
   //newRec.vertex(p3.x+offset.x,p3.y+offset.y);

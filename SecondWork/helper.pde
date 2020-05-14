@@ -25,3 +25,8 @@ PVector findForce(PVector at){
   float v_y = sin(theta)*FORCE_MUL;
   return new PVector(v_x,v_y);
 }
+
+float findArea(PVector a,PVector b,PVector c,PVector d)
+{
+  return abs((a.x*b.y-b.x*a.y)+(b.x*c.y - b.y*c.x)+(c.x*d.y-d.x*c.y))/2;
+}

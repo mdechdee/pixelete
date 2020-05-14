@@ -1,14 +1,13 @@
+import processing.pdf.*;
 import jto.colorscheme.*;
-ColorScheme cs;
-
-ArrayList<Color> colors;
+boolean saveOneFrame = false;
 PShape rec;
 static int FRAMERATE = 60;
 int W,H;
-int PAD_W = 2820;
+int PAD_W = 2000;
 int PAD_H = 2000;
 int MARG = 0;
-int STEPS = 6;
+int STEPS = 7;
 int imageCount;
 
 void setup(){
@@ -23,7 +22,7 @@ void setup(){
   background(255);
   noFill();
   noStroke();
-  smooth(2);
+  smooth(1);
   //rectMode(CORNER);
   
   rec = createShape();
@@ -35,29 +34,37 @@ void setup(){
   rec.vertex(0, PAD_H);
   rec.endShape(CLOSE); 
   //secList.add(new secPar(rec));
+  cs = new ColorScheme("Color2.xml", this);
+  colors = cs.getColors();
+  
   section(STEPS, rec);
   //image(pg,0,0,width, height);
   String path = sketchPath("Images/");
   File file = new File(path);
   imageCount = file.list().length+3;
   
-  cs = new ColorScheme("Color.xml", this);
-  colors = cs.getColors();
-  
-  for(color c : colors)
+
 }
 
 void draw(){
-  fill(255);
+  if(saveOneFrame == true) {
+    beginRecord(PDF, "Images/sketch"+(imageCount)+".pdf"); 
+  }
+  fill(255,255,255);
   rect(0,0,W,H);
   for(secPar p : secList){
     p.update();
     p.draw();
   }
   //image(pg,0,0,width,height);
+  if(saveOneFrame == true) {
+    endRecord();
+    saveOneFrame = false; 
+  }
 }
 
 void mousePressed() {
-  save("Images/sketch"+(imageCount)+".tiff");
+  //save("Images/sketch"+(imageCount)+".tiff");
   imageCount++;
+  saveOneFrame = true; 
 }

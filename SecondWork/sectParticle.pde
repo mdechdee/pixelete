@@ -12,6 +12,7 @@ class secPar{
   PVector force= new PVector(0,0);
   PVector torq = new PVector(0,0);
   float inertia = 0;
+  float mass = 1;
   
   secPar(PShape _sect){
     sect = _sect;
@@ -19,10 +20,11 @@ class secPar{
     ini_pos = pos;
     for(int i=0;i<4;i++) 
       inertia += MASS*sect.getVertex(i).dist(pos)*sect.getVertex(i).dist(pos);
+    mass = findArea(sect.getVertex(0),sect.getVertex(1),sect.getVertex(2),sect.getVertex(3));
   }
   
   void update(){
-    force.add(findForce(pos));
+    force.add(findForce(pos).div(mass));
     force.limit(MAX_FORCE);
     vel.add(force);
     vel.limit(MAX_VEL);
