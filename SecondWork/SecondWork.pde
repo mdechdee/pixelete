@@ -7,7 +7,7 @@ int W,H;
 int PAD_W = 2000;
 int PAD_H = 2000;
 int MARG = 0;
-int STEPS = 7;
+int STEPS = 4;
 int imageCount;
 
 void setup(){
@@ -25,19 +25,15 @@ void setup(){
   smooth(1);
   //rectMode(CORNER);
   
-  rec = createShape();
-  rec.beginShape();
-  rec.fill(0);
-  rec.vertex(0,0);
-  rec.vertex(PAD_W, 0);
-  rec.vertex(PAD_W, PAD_H);
-  rec.vertex(0, PAD_H);
-  rec.endShape(CLOSE); 
+  drawCube(); 
   //secList.add(new secPar(rec));
   cs = new ColorScheme("Color2.xml", this);
   colors = cs.getColors();
-  
-  section(STEPS, rec);
+  for(PShape c: cube)
+  {
+    section(STEPS, c);
+  }
+  //section(STEPS, rec);
   //image(pg,0,0,width, height);
   String path = sketchPath("Images/");
   File file = new File(path);
@@ -56,6 +52,18 @@ void draw(){
     p.update();
     p.draw();
   }
+  for(PShape c: cube)
+  {
+    c.resetMatrix();
+    c.scale(2);
+    PVector v = findCenter(c);
+    //c.translate(v.x,v.y);
+    shape(c);
+  }
+  noFill();
+  stroke(255);
+  strokeWeight(50);
+  rect(0,0,W,H);
   //image(pg,0,0,width,height);
   if(saveOneFrame == true) {
     endRecord();
