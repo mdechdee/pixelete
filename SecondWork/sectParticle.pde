@@ -1,6 +1,6 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
 float MAX_FORCE = 1; 
-float MAX_VEL = 0;
+float MAX_VEL = 1;
 float MASS = 1;
 float FORCE_MUL = 1;
 
@@ -20,7 +20,7 @@ class secPar{
     ini_pos = pos;
     for(int i=0;i<4;i++) 
       inertia += MASS*sect.getVertex(i).dist(pos)*sect.getVertex(i).dist(pos);
-    mass = findArea(sect.getVertex(0),sect.getVertex(1),sect.getVertex(2),sect.getVertex(3));
+    //mass = findArea(sect.getVertex(0),sect.getVertex(1),sect.getVertex(2),sect.getVertex(3));
   }
   
   void update(){
