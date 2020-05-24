@@ -28,5 +28,5 @@ PVector findForce(PVector at){
 
 float findArea(PVector a,PVector b,PVector c,PVector d)
 {
-  return abs((a.x*b.y-b.x*a.y)+(b.x*c.y - b.y*c.x)+(c.x*d.y-d.x*c.y))/2;
+  return abs((a.x*b.y-b.x*a.y)+(b.x*c.y - b.y*c.x)+(c.x*d.y-d.x*c.y)+(d.x*a.y-a.x*d.y))/2;
 }

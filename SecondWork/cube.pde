@@ -1,10 +1,11 @@
 ArrayList<PShape> cube;
-int cube_row = 12;
-int cube_col = 15;
-int CW = 90;
+int cube_row = 30;
+int cube_col = 22;
+int CW = 50;
 float S30 = sin(radians(30));
 float C30 = cos(radians(30));
 float S45 = sin(radians(45));
+float max_log_area;
 
 float A = CW;
 float B = CW*S30*2;
@@ -24,6 +25,10 @@ void drawCube(){
       cube.add(drawRight(x,y));
     }
   }
+  PShape p = cube.get(0);
+  max_log_area = log2(
+    findArea(p.getVertex(0),p.getVertex(1),p.getVertex(2),p.getVertex(3))/4+1
+  );
 }
 
 PShape drawTop(float x, float y){

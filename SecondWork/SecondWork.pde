@@ -1,5 +1,4 @@
 import processing.pdf.*;
-import jto.colorscheme.*;
 boolean saveOneFrame = false;
 PShape rec;
 static int FRAMERATE = 60;
@@ -9,13 +8,14 @@ int PAD_H = 2000;
 int MARG = 0;
 int STEPS = 4;
 int imageCount;
+PrintWriter output;
 
 void setup(){
   frameRate(FRAMERATE);
   //size(620,875);
   //pg = createGraphics(2480,3500);
   //size(3500,2480);
-  size(3500,2480);
+  size(2480,3500);
   W = width;
   H = height;
   
@@ -27,8 +27,8 @@ void setup(){
   
   drawCube(); 
   //secList.add(new secPar(rec));
-  cs = new ColorScheme("Color2.xml", this);
-  colors = cs.getColors();
+  output = createWriter("positions.txt"); 
+  
   for(PShape c: cube)
   {
     section(STEPS, c);
@@ -52,18 +52,18 @@ void draw(){
     p.update();
     p.draw();
   }
-  for(PShape c: cube)
-  {
-    c.resetMatrix();
-    c.scale(2);
-    PVector v = findCenter(c);
-    //c.translate(v.x,v.y);
-    shape(c);
-  }
-  noFill();
-  stroke(255);
-  strokeWeight(50);
-  rect(0,0,W,H);
+  //for(PShape c: cube)
+  //{
+  //  c.resetMatrix();
+  //  c.scale(2);
+  //  PVector v = findCenter(c);
+  //  //c.translate(v.x,v.y);
+  //  shape(c);
+  //}
+  //noFill();
+  //stroke(255);
+  //strokeWeight(50);
+  //rect(0,0,W,H);
   //image(pg,0,0,width,height);
   if(saveOneFrame == true) {
     endRecord();

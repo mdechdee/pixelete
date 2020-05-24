@@ -1,7 +1,5 @@
-float SEP = 0.7;   // Seperation of rects (0-1) the less the more seperation
-float EXTREME = 0.4; // The extremness of rectngle generated (0-0.5)
-ColorScheme cs;
-ArrayList<Color> colors;
+float SEP = 0.4;   // Seperation of rects (0-1) the less the more seperation
+float EXTREME = 0.3; // The extremness of rectngle generated (0-0.5)
 
 void section(int depth,PShape rec){
   if(depth<0)  return;
@@ -41,18 +39,20 @@ void section(int depth,PShape rec){
 PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector offset, boolean toList){
   PShape newRec = createShape();
   newRec.beginShape();
-  newRec.colorMode(HSB,100,100,100,100);
-  newRec.fill(noise(p1.x*0.01,p1.y*0.01)*80+10,
-              0,
-              noise(p1.x*0.05,p1.y*0.05)*60+0
+  newRec.colorMode(HSB,360,100,100,100);
+  output.println(log2(findArea(p1,p2,p3,p4)+1));
+  newRec.fill(map(log2(findArea(p1,p2,p3,p4)+1),0,max_log_area,120,240),
+              80,
+              noise(p1.x*0.05,p1.y*0.05)*80+40
               ,100);
-  newRec.stroke(noise(p1.x*0.01,p1.y*0.01)*80+10,
-              0,
-              noise(p1.x*0.05,p1.y*0.05)*20+10
-              ,100);
+  //newRec.stroke(noise(p1.x*0.01,p1.y*0.01)*80+10,
+  //            0,
+  //            noise(p1.x*0.05,p1.y*0.05)*20+10
+  //            ,100);
   //newRec.fill(colors.get((int) random(0,15)).toInt());
   //newRec.stroke(colors.get((int) random(0,15)).toInt());
-  newRec.strokeWeight(0);
+  //newRec.strokeWeight(0);
+  newRec.noStroke();
   //newRec.vertex(p1.x+offset.x,p1.y+offset.y);
   //newRec.vertex(p2.x+offset.x,p2.y+offset.y);
   //newRec.vertex(p3.x+offset.x,p3.y+offset.y);
@@ -62,7 +62,7 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   newRec.vertex(p3.x,p3.y);
   newRec.vertex(p4.x,p4.y);
   newRec.endShape(CLOSE);
-  newRec.translate(offset.x,offset.y);
+  //newRec.translate(offset.x,offset.y);
   
   if(toList){
     //pg.beginDraw();
@@ -71,4 +71,9 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
     secList.add(new secPar(newRec));
   }
   return newRec;
+}
+
+float log2(float a)
+{
+  return log(a)/log(2);
 }

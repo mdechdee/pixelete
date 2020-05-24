@@ -1,6 +1,6 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
 float MAX_FORCE = 1; 
-float MAX_VEL = 1;
+float MAX_VEL = 0;
 float MASS = 1;
 float FORCE_MUL = 1;
 
@@ -13,7 +13,7 @@ class secPar{
   PVector torq = new PVector(0,0);
   float inertia = 0;
   float mass = 1;
-  
+
   secPar(PShape _sect){
     sect = _sect;
     pos = findCenter(sect);
@@ -24,18 +24,22 @@ class secPar{
   }
   
   void update(){
-    force.add(findForce(pos).div(mass));
-    force.limit(MAX_FORCE);
-    vel.add(force);
-    vel.limit(MAX_VEL);
-    pos.add(vel);
+    //force.add(findForce(pos).div(mass));
+    //force.limit(MAX_FORCE);
+    //vel.add(force);
+    //vel.limit(MAX_VEL);
+    //pos.add(vel);
     //for(int i=0;i<4;i++){
     //   torq.add(findTorq(sect.getVertex(i), pos)); 
     //}
     //wrap();
     sect.resetMatrix();
     //sect.translate(PAD_W/4,PAD_H/4);
-    sect.translate(pos.x,pos.y);
+    //sect.translate(-pos.x+222,-pos.y+222);
+    sect.scale(1.3);
+    sect.translate(0.1*pos.x,0.7*pos.y);
+    
+    
     //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);
     //sect.translate(-PAD_W,-PAD_H);
     
