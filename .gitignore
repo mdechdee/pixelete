@@ -10,3 +10,5 @@ application.macosx
 out
 FirstWork/
 SecondWork/Images
+*.pdf
+*.tiff
