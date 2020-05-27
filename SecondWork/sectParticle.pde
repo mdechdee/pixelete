@@ -37,7 +37,7 @@ class secPar{
     //sect.translate(PAD_W/4,PAD_H/4);
     //sect.translate(-pos.x+222,-pos.y+222);
     sect.scale(1.3);
-    sect.translate(0.1*pos.x,0.7*pos.y);
+    sect.translate(0.1*pos.x,0.5*pos.y);
     
     
     //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);

@@ -6,7 +6,7 @@ int W,H;
 int PAD_W = 2000;
 int PAD_H = 2000;
 int MARG = 0;
-int STEPS = 4;
+int STEPS = 5;
 int imageCount;
 PrintWriter output;
 
@@ -28,6 +28,15 @@ void setup(){
   drawCube(); 
   //secList.add(new secPar(rec));
   output = createWriter("positions.txt"); 
+  rec = createShape();
+  //rec.beginShape();
+  //rec.fill(0);
+  //rec.vertex(0,0);
+  //rec.vertex(W/2, 0);
+  //rec.vertex(W/2, H/2);
+  //rec.vertex(0, H/2);
+  //rec.endShape(CLOSE); 
+  //cube.add(rec);
   
   for(PShape c: cube)
   {

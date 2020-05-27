@@ -1,7 +1,7 @@
-ArrayList<PShape> cube;
-int cube_row = 30;
-int cube_col = 22;
-int CW = 50;
+ArrayList<PShape> cube = new ArrayList<PShape>();
+int cube_row = 10;
+int cube_col = 7;
+int CW = 200;
 float S30 = sin(radians(30));
 float C30 = cos(radians(30));
 float S45 = sin(radians(45));
@@ -13,14 +13,14 @@ float C = CW*C30*2;
 float OFFSET = 10;
 
 void drawCube(){
-  cube = new ArrayList<PShape>();
+  
   for(int i=0;i<cube_row;i++)
   {
     for(int m=0;m<cube_col;m++)
     {
-      float x = m*C-(i%2)*(C/2);
-      float y = (i*A)+((i+1)*B/2)-(B/2);
-      cube.add(drawTop(x,y));
+      float x = m*C-(i%2)*(C/2) + (i%2)*C/2; //- (m+1)*C/2;
+      float y = (i*A)+((i+1)*B/2)-(B/2) - (i+1)*A/2;
+      //cube.add(drawTop(x,y));
       cube.add(drawLeft(x,y));
       cube.add(drawRight(x,y));
     }
