@@ -1,8 +1,11 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
 float MAX_FORCE = 1; 
-float MAX_VEL = 0;
+float MAX_VEL = 1;
 float MASS = 1;
 float FORCE_MUL = 1;
+float SCALE = 0.7;
+float TRAN_X = 0.1;
+float TRAN_Y = 0.1;
 
 class secPar{
   PShape sect;
@@ -36,9 +39,11 @@ class secPar{
     sect.resetMatrix();
     //sect.translate(PAD_W/4,PAD_H/4);
     //sect.translate(-pos.x+222,-pos.y+222);
-    sect.scale(1.3);
-    sect.translate(0.1*pos.x,0.5*pos.y);
-    
+    sect.translate(pos.x,pos.y);
+    sect.rotate(random(0,1));
+    sect.translate(-pos.x,-pos.y);
+    //sect.scale(SCALE);
+    //sect.translate(TRAN_X*pos.x,TRAN_Y*pos.y);
     
     //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);
     //sect.translate(-PAD_W,-PAD_H);

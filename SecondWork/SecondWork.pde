@@ -1,6 +1,6 @@
 import processing.pdf.*;
 boolean saveOneFrame = false;
-PShape rec;
+PShape rec = new PShape();
 static int FRAMERATE = 60;
 int W,H;
 int PAD_W = 2000;
@@ -14,28 +14,28 @@ void setup(){
   frameRate(FRAMERATE);
   //size(620,875);
   //pg = createGraphics(2480,3500);
-  //size(3500,2480);
-  size(2480,3500);
+  size(3500,2480);
+  //size(2480,3500);
   W = width;
   H = height;
   
-  background(255);
+  background(0);
   noFill();
   noStroke();
   smooth(1);
   //rectMode(CORNER);
-  
-  drawCube(); 
+  rec.beginShape();
+  rec.fill(0);
+  rec.vertex(0,0);
+  rec.vertex(W, 0);
+  rec.vertex(W, H);
+  rec.vertex(0, H);
+  rec.endShape(CLOSE); 
+  drawCave(rec); 
   //secList.add(new secPar(rec));
   output = createWriter("positions.txt"); 
   rec = createShape();
-  //rec.beginShape();
-  //rec.fill(0);
-  //rec.vertex(0,0);
-  //rec.vertex(W/2, 0);
-  //rec.vertex(W/2, H/2);
-  //rec.vertex(0, H/2);
-  //rec.endShape(CLOSE); 
+
   //cube.add(rec);
   
   for(PShape c: cube)
