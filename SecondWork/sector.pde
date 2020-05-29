@@ -1,5 +1,5 @@
-float SEP = 0.4;   // Seperation of rects (0-1) the less the more seperation
-float EXTREME = 0.15; // The extremness of rectngle generated (0-0.5)
+float SEP = 0.2;   // Seperation of rects (0-1) the less the more seperation
+float EXTREME = 0.02; // The extremness of rectngle generated (0-0.5)
 
 void section(int depth,PShape rec){
   if(depth<0)  return;
@@ -40,14 +40,14 @@ PShape drawRect(int d, PVector p1, PVector p2,PVector p3,PVector p4, PVector off
   PShape newRec = createShape();
   newRec.beginShape();
   newRec.colorMode(HSB,360,100,100,100);
-  newRec.fill(noise(log2(findArea(p1,p2,p3,p4)+1))*240+20,
-              80,
-              100 - random(0,10)
-              ,100);
-  newRec.stroke(noise(log2(findArea(p1,p2,p3,p4)+1))*240+20,
-              50,
-              100
-              ,100);
+  newRec.fill(noise(findArea(p1,p2,p3,p4)*0.1)*120+120,
+              SATURATION,
+              92
+              ,OPACITY);
+  //newRec.stroke(noise(p1.x*0.001,p1.y*0.001)*240+20,
+  //            50,
+  //            100
+  //            ,100);
   //newRec.fill(colors.get((int) random(0,15)).toInt());
   //newRec.stroke(colors.get((int) random(0,15)).toInt());
   //newRec.strokeWeight(pow(1.8,d));

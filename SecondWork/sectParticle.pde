@@ -3,9 +3,9 @@ float MAX_FORCE = 1;
 float MAX_VEL = 1;
 float MASS = 1;
 float FORCE_MUL = 1;
-float SCALE = 0.7;
-float TRAN_X = 0.1;
-float TRAN_Y = 0.1;
+float SCALE = 0.33;
+float TRAN_X = 1.5;
+float TRAN_Y = 1.5;
 
 class secPar{
   PShape sect;
@@ -39,10 +39,11 @@ class secPar{
     sect.resetMatrix();
     //sect.translate(PAD_W/4,PAD_H/4);
     //sect.translate(-pos.x+222,-pos.y+222);
-    sect.translate(pos.x,pos.y);
-    sect.rotate(random(0,1));
-    sect.translate(-pos.x,-pos.y);
-    //sect.scale(SCALE);
+    sect.scale(SCALE);
+    //sect.translate(pos.x,pos.y);
+    //sect.rotate(random(0,0.2));
+    sect.translate(TRAN_X*pos.x,TRAN_Y*pos.y);
+    
     //sect.translate(TRAN_X*pos.x,TRAN_Y*pos.y);
     
     //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);

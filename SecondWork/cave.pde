@@ -1,33 +1,41 @@
-float LERP_RATE = 0.5;
-float LERP_DEPTH = 6;
+float LERP_RATE = 0.95;
+float LERP_DEPTH = 1;
+float OPACITY = 60;
+float SATURATION = 60;
+float RAD = 2500;
+int STEPS = 5;
+int CAVE_SECT = 12;
+
 void drawCave(PShape s){
-  PVector center = findCenter(s);
-  PVector[] p = {s.getVertex(0),s.getVertex(1),s.getVertex(2),s.getVertex(3)};
-  PVector[] v = new PVector[4];
-  for(int i =0;i<4;i++){
-    v[i] = PVector.lerp(p[i],center,LERP_RATE);
-  }
-  PShape[] r = new PShape[4];
-  for(int i = 0;i<4;i++){
+  PVector c = findCenter(s);
+  float angle = TWO_PI/CAVE_SECT;
+  println(angle/TWO_PI*360);
+  PShape[] r = new PShape[CAVE_SECT];
+  for(int i = 0;i<CAVE_SECT;i++){
+    println(cos(angle*i)*RAD, cos(angle*(i+1))*RAD);
     r[i] = createShape();
     r[i].beginShape();
-    r[i].vertex(p[i%4].x,p[i%4].y);
-    r[i].vertex(p[(i+1)%4].x,p[(i+1)%4].y);
-    r[i].vertex(v[(i+1)%4].x,v[(i+1)%4].y);
-    r[i].vertex(v[i%4].x,v[i%4].y);
+    r[i].fill(0);
+    r[i].vertex(c.x + (cos(angle*i)*30) , c.y - (sin(angle*i)*30));
+    r[i].vertex(c.x + (cos(angle*i)*RAD) , c.y - (sin(angle*i)*RAD));
+    r[i].vertex(c.x + (cos(angle*(i+1))*RAD) , c.y - (sin(angle*(i+1))*RAD));
+    r[i].vertex(c.x + (cos(angle*(i+1))*30) , c.y - (sin(angle*(i+1))*30));
     r[i].endShape(CLOSE);
+    //shape(r[i]);
     cube.add(r[i]);
   }
-  PShape newRec = createShape();
-  newRec.beginShape();
-  newRec.vertex(v[0].x,v[0].y);
-  newRec.vertex(v[1].x,v[1].y);
-  newRec.vertex(v[2].x,v[2].y);
-  newRec.vertex(v[3].x,v[3].y);
-  newRec.endShape(CLOSE);
+  //println(r[0].getVertex(0),r[0].getVertex(1),r[0].getVertex(2),r[0].getVertex(3));
+  for(PShape cu: cube)
+  {
+    section(STEPS, cu);
+  }
+  STEPS += 1;
+  OPACITY += 40;
+  SATURATION += 40;
+  CAVE_SECT /= 2;
   if(LERP_DEPTH > 0)
   {
     LERP_DEPTH -= 1;
-    drawCave(newRec);
+    drawCave(s);
   }
 }

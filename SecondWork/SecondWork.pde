@@ -6,7 +6,7 @@ int W,H;
 int PAD_W = 2000;
 int PAD_H = 2000;
 int MARG = 0;
-int STEPS = 5;
+
 int imageCount;
 PrintWriter output;
 
@@ -19,11 +19,12 @@ void setup(){
   W = width;
   H = height;
   
-  background(0);
+  background(255);
   noFill();
   noStroke();
   smooth(1);
   //rectMode(CORNER);
+  rec = createShape();
   rec.beginShape();
   rec.fill(0);
   rec.vertex(0,0);
@@ -33,20 +34,16 @@ void setup(){
   rec.endShape(CLOSE); 
   drawCave(rec); 
   //secList.add(new secPar(rec));
-  output = createWriter("positions.txt"); 
-  rec = createShape();
+  //output = createWriter("positions.txt"); 
+  
 
   //cube.add(rec);
-  
-  for(PShape c: cube)
-  {
-    section(STEPS, c);
-  }
+ 
   //section(STEPS, rec);
   //image(pg,0,0,width, height);
   String path = sketchPath("Images/");
   File file = new File(path);
-  imageCount = file.list().length+3;
+  imageCount = file.list().length;
   
 
 }
