@@ -1,11 +1,12 @@
 ArrayList<secPar> secList = new ArrayList<secPar>();
 float MAX_FORCE = 1; 
-float MAX_VEL = 1;
+float MAX_VEL = 0;
 float MASS = 1;
 float FORCE_MUL = 1;
-float SCALE = 0.33;
-float TRAN_X = 1.5;
-float TRAN_Y = 1.5;
+
+float SCALE = 0.5;
+float TRAN_X = 1.0;
+float TRAN_Y = 1.0;
 
 class secPar{
   PShape sect;
@@ -32,27 +33,13 @@ class secPar{
     //vel.add(force);
     //vel.limit(MAX_VEL);
     //pos.add(vel);
-    //for(int i=0;i<4;i++){
-    //   torq.add(findTorq(sect.getVertex(i), pos)); 
-    //}
     //wrap();
     sect.resetMatrix();
-    //sect.translate(PAD_W/4,PAD_H/4);
-    //sect.translate(-pos.x+222,-pos.y+222);
     sect.scale(SCALE);
-    //sect.translate(pos.x,pos.y);
-    //sect.rotate(random(0,0.2));
     sect.translate(TRAN_X*pos.x,TRAN_Y*pos.y);
-    
-    //sect.translate(TRAN_X*pos.x,TRAN_Y*pos.y);
-    
-    //sect.translate(pos.x-ini_pos.x,pos.y-ini_pos.y);
-    //sect.translate(-PAD_W,-PAD_H);
-    
   }
   void draw(){
     shape(sect);
-    //ellipse(pos.x,pos.y,5,5);
   }
   void wrap(){
      float new_x, new_y;

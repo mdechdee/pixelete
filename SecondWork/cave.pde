@@ -1,10 +1,12 @@
 float LERP_RATE = 0.95;
 float LERP_DEPTH = 1;
-float OPACITY = 60;
+float OPACITY = 80;
 float SATURATION = 60;
+float INI_HUE = 0;
 float RAD = 2500;
-int STEPS = 5;
+int STEPS = 4;
 int CAVE_SECT = 12;
+ArrayList<PShape> recList = new ArrayList<PShape>();
 
 void drawCave(PShape s){
   PVector c = findCenter(s);
@@ -21,17 +23,18 @@ void drawCave(PShape s){
     r[i].vertex(c.x + (cos(angle*(i+1))*RAD) , c.y - (sin(angle*(i+1))*RAD));
     r[i].vertex(c.x + (cos(angle*(i+1))*30) , c.y - (sin(angle*(i+1))*30));
     r[i].endShape(CLOSE);
-    //shape(r[i]);
-    cube.add(r[i]);
+    recList.add(r[i]);
   }
-  //println(r[0].getVertex(0),r[0].getVertex(1),r[0].getVertex(2),r[0].getVertex(3));
-  for(PShape cu: cube)
+  for(PShape cu: recList)
   {
     section(STEPS, cu);
+    section(STEPS, cu);
   }
+  recList.clear();
   STEPS += 1;
-  OPACITY += 40;
+  OPACITY += 20;
   SATURATION += 40;
+  INI_HUE += 0;
   CAVE_SECT /= 2;
   if(LERP_DEPTH > 0)
   {

@@ -3,7 +3,6 @@ PVector intersect(PVector a, PVector b, PVector c, PVector d){
     Ref: http://www-cs.ccny.cuny.edu/~wolberg/capstone/intersection/
     Intersection%20point%20of%20two%20lines.html
   */
-  
   // Line 1
   float x1 = a.x; float y1 = a.y;
   float x2 = c.x; float y2 = c.y;
@@ -29,4 +28,9 @@ PVector findForce(PVector at){
 float findArea(PVector a,PVector b,PVector c,PVector d)
 {
   return abs((a.x*b.y-b.x*a.y)+(b.x*c.y - b.y*c.x)+(c.x*d.y-d.x*c.y)+(d.x*a.y-a.x*d.y))/2;
+}
+
+float log2(float a)
+{
+  return log(a)/log(2);
 }
